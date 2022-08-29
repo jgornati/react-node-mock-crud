@@ -1,0 +1,94 @@
+.containerFileInput {
+    position: relative;
+    border: 0;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.containerFileInput legend {
+    position: absolute;
+    bottom: -22px;
+    right: 5px;
+    color: white;
+}
+
+.fileInput label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px 8px;
+    padding-top: 80px;
+    padding-bottom: 70px;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.fileInput label span {
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+.fileInput label svg {
+    fill: white;
+}
+
+.fileInput {
+    pointer-events: none;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index: -1;
+}
+
+.file {
+    width: 100%;
+}
+
+.buttonUpload {
+    padding: 0;
+    border-radius: 8px;
+    text-transform: none;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed;
+    border-spacing: 10px;
+    stroke-dasharray: 10, 20;
+}
+
+.labelButton {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.labelButton img {
+    position: absolute;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.progress {
+    width: 30px !important;
+    height: 30px !important;
+    position: absolute;
+    z-index: 9;
+}

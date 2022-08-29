@@ -1,0 +1,56 @@
+.cameraContainer {
+    padding-top: 64px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cameraContainer video, .cameraContainer img {
+    height: calc(100vh - 63px);
+    width: 177.77777778vh;
+    object-fit: cover;
+    min-width: 100%;
+    z-index: 0;
+    position: relative;
+}
+
+.containerController {
+    position: absolute;
+    background-color: transparent;
+    bottom: 20px;
+    left: 0;
+    z-index: 19;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnCapture {
+    width: 60px;
+    height: 60px;
+}
+
+
+.btnCapture::before {
+    border: 2px solid white;
+    width: 60px;
+    height: 60px;
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all ease-in-out .3s;
+}
+
+.btnCapture:active::before {
+    width: 70px;
+    height: 70px;
+}
+
+.title {
+    margin-left: 20px;
+    flex: 1;
+}

@@ -1,0 +1,109 @@
+.MuiTableCell-head {
+    cursor: pointer;
+}
+
+.MuiTableCell-root {
+    font-size: 0.75rem !important;
+    padding: 12px !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (min-width: 600px) {
+    .MuiContainer-root {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}
+
+/*Custom shadows*/
+.MuiPaper-elevation1 {
+    /*border-radius: 20px !important;*/
+    /*box-shadow:rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) 0px 16px 32px -4px !important;*/
+}
+
+/*Custom border radiuis*/
+.MuiOutlinedInput-root {
+    border-radius: 8px !important;
+}
+
+/*Custom table*/
+.MuiTableCell-root {
+    font-size: 0.75rem !important;
+    padding: 12px !important;
+}
+
+.MuiTableHead-root {
+    background-color: rgb(244, 246, 248);
+}
+
+.MuiTableHead-root th {
+    color: rgb(99, 115, 129) !important;
+    border: none;
+}
+
+.MuiTableCell-head {
+    cursor: pointer;
+    font-size: 0.83rem !important;
+    padding-top: 23px !important;
+    padding-bottom: 22px !important;
+}
+
+.MuiTableCell-head:first-child {
+    padding-left: 24px !important;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    /*box-shadow: rgb(255 255 255) 8px 0px 0px inset;*/
+}
+
+.MuiTableCell-head:last-child {
+    padding-right: 24px !important;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    /*box-shadow: rgb(255 255 255) -8px 0px 0px inset;*/
+}
+
+.MuiTableBody-root tr td {
+    /*border: none !important;*/
+}
+
+.MuiTableBody-root tr td:first-of-type {
+    padding-left: 24px !important;
+}
+
+.MuiTableBody-root tr td:last-of-type {
+    padding-right: 24px !important;
+}
+
+.MuiTableRow-root:hover {
+    background-color: rgba(145, 158, 171, 0.08);
+}
+
+/**/
+
+/*.MuiButton-containedPrimary {*/
+/*    box-shadow: currentColor 0px 5px 16px 0px !important;*/
+/*    border-radius: 8px !important;*/
+/*}*/
+
+.MuiPaper-rounded {
+    border-radius: 16px !important;
+}
+
+.MuiToggleButton-root {
+    border-radius: 8px !important;
+}
+
+.MuiToggleButtonGroup-groupedHorizontal:not(:last-child) {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+
+}
+
+.MuiToggleButtonGroup-groupedHorizontal:not(:first-child) {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}

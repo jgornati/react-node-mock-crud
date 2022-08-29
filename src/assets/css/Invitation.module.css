@@ -1,0 +1,92 @@
+.invitationWrapper {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.invitationContainer {
+    background-image: url("../img/invitation/bgInvitation2.png");
+    background-size: cover;
+    width: 100%;
+    min-height: 100%;
+    color: white;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 30px;
+    justify-content: center;
+    transition: all ease .5s;
+}
+
+.btnIn {
+    color: white;
+    border-color: white;
+    cursor: pointer;
+}
+
+.openForm .invitationContainer {
+    width: 55%;
+}
+
+.openForm .formsWrapper {
+    background-color: white;
+    transition: width ease .5s;
+    width: 45%;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+@media (max-width: 899px) {
+    .openForm .invitationContainer {
+        width: 40%;
+    }
+
+    .openForm .formsWrapper {
+        width: 60%;
+    }
+}
+
+@media (max-width: 750px) {
+    .invitationWrapper.openForm {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .logo {
+        max-width: 150px !important;
+    }
+
+    .invitationContainer h1 {
+        font-size: 1.6rem !important;
+        text-align: center;
+    }
+
+    .invitationInfo {
+        text-align: center;
+    }
+
+    .openForm .invitationContainer {
+        mask-image: url("../../assets/img/invitation/formaBanner.svg");
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        min-height: 120px;
+        mask-position: bottom;
+        transition: none;
+    }
+
+    .openForm .invitationContainer {
+        width: 100%;
+    }
+
+    .openForm .formsWrapper {
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+    }
+
+
+}

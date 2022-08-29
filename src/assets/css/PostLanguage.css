@@ -1,0 +1,10 @@
+.sticky {
+    position: sticky;
+    top:-5px;
+    background-color: white;
+    z-index: 9;
+}
+
+.postLanguage .ql-editor{
+    min-height:600px;
+}

@@ -1,8 +1,10 @@
 # Ejemplo completo de CRUD de usuario con foto de perfil
 
-El siguiente proyecto contiene un ejemplo de un simple ABM realizado en React (Cliente - Frontend) y Redux con un mock
+El siguiente proyecto contiene un ejemplo de un simple CRUD realizado en React (Cliente - Frontend) y Redux con un mock
 server (API - Backend) realizado en
 Node.js con express.
+
+![alt text](project-face.png "ABM Usuarios")
 
 #### Estructura del proyecto:
 

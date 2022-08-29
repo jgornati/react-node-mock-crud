@@ -3,7 +3,7 @@ import usersApi from "../api/usersApi"
 //constants
 import * as errorMessages from '../constants/MessageConstants';
 //normalizers
-import {normalizeDatos, normalizeDato, denormalizeDato} from "../normalizers/normalizeUsers";
+import { normalizeDatos, normalizeDato, denormalizeDato } from "../normalizers/normalizeUsers";
 //lodash
 import merge from "lodash/merge";
 //utils
@@ -32,7 +32,7 @@ function requestUsers() {
 function receiveUsers(json) {
     return {
         type: RECEIVE_USERS,
-    users: normalizeDatos(json),
+        users: normalizeDatos(json),
         receivedAt: Date.now()
     }
 }
@@ -123,7 +123,7 @@ function requestUser() {
 export function receiveUser(json) {
     return {
         type: RECEIVE_USER,
-    user: normalizeDato(json),
+        user: normalizeDato(json),
         receivedAt: Date.now()
     }
 }
@@ -274,7 +274,7 @@ export function saveUpdateUser(files) {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let user = denormalizeDato(getState().users.update.activo, store);
@@ -290,35 +290,35 @@ export function saveUpdateUser(files) {
                 }
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorUpdateUser(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorUpdateUser(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                try{
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorUpdateUsers(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorUpdateUsers(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorUpdateUser(JSON.parse(error.message)));
-                                                if (error.data && error.data.length > 0)
-                                                    dispatch(receiveUpdateUser(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorUpdateUser(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
-                                    }catch{
-                                        dispatch(errorUpdateUser(errorMessages.GENERAL_ERROR));
-                                    };
-                            }
-                        });
+                        return;
+                    default:
+                        try {
+                            if (error.responseJSON && error.responseJSON.message !== "")
+                                try {
+                                    dispatch(errorUpdateUsers(JSON.parse(error.responseJSON.message)));
+                                } catch (e) {
+                                    dispatch(errorUpdateUsers(error.responseJSON.message));
+                                }
+                            else
+                                error.json().then((error) => {
+                                    dispatch(errorUpdateUser(JSON.parse(error.message)));
+                                    if (error.data && error.data.length > 0)
+                                        dispatch(receiveUpdateUser(error.data));
+                                }).catch(() => {
+                                    dispatch(errorUpdateUser(errorMessages.GENERAL_ERROR));
+                                });
+                            return;
+                        } catch {
+                            dispatch(errorUpdateUser(errorMessages.GENERAL_ERROR));
+                        }
+                        ;
+                }
+            });
     }
 }
 
@@ -338,28 +338,28 @@ export const RESET_UPDATE_USERS = "RESET_UPDATE_USERS";
 function requestUpdateUsers() {
     return {
         type: REQUEST_UPDATE_USERS,
-}
+    }
 }
 
 function receiveUpdateUsers(users) {
     return {
         type: SUCCESS_UPDATE_USERS,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         users: normalizeDatos(users)
-}
+    }
 }
 
 function errorUpdateUsers(error) {
     return {
         type: ERROR_UPDATE_USERS,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetUpdateUsers() {
     return {
         type: RESET_UPDATE_USERS,
-}
+    }
 }
 
 export function saveUpdateUsers() {
@@ -370,7 +370,7 @@ export function saveUpdateUsers() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let users = getState().users.update.activos.map((idUser) => {
@@ -398,19 +398,18 @@ export function saveUpdateUsers() {
                         dispatch(errorUpdateUsers(errorMessages.UNAUTHORIZED_TOKEN));
                         return;
                     default:
-                    if (error.responseJSON && error.responseJSON.message !== "")
-                        try
-                        {
-                            dispatch(errorUpdateUsers(JSON.parse(error.responseJSON.message)));
-                        } catch(e) {
-                            dispatch(errorUpdateUsers(error.responseJSON.message));
-                        }
-                    else
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorUpdateUsers(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorUpdateUsers(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorUpdateUsers(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorUpdateUsers(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorUpdateUsers(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -477,7 +476,7 @@ export function saveCreateUser(files) {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let user = denormalizeDato(getState().users.create.nuevo, store);
@@ -493,36 +492,35 @@ export function saveCreateUser(files) {
                 }
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorCreateUser(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorCreateUser(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                 try
-                                 {
-                                    if (error.responseJSON && error.responseJSON.message !== "")
-                                        try
-                                        {
-                                            dispatch(errorCreateUsers(JSON.parse(error.responseJSON.message)));
-                                        } catch(e) {
-                                            dispatch(errorCreateUsers(error.responseJSON.message));
-                                        }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorCreateUser(JSON.parse(error.message)));
-                                                if (error.data)
-                                                    dispatch(receiveCreateUser(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorCreateUser(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
-                                    }catch{
-                                        dispatch(errorCreateUser(errorMessages.GENERAL_ERROR));
-                                    };
-                            }
-                        });
+                        return;
+                    default:
+                        try {
+                            if (error.responseJSON && error.responseJSON.message !== "")
+                                try {
+                                    dispatch(errorCreateUsers(JSON.parse(error.responseJSON.message)));
+                                } catch (e) {
+                                    dispatch(errorCreateUsers(error.responseJSON.message));
+                                }
+                            else
+                                error.json().then((error) => {
+                                    dispatch(errorCreateUser(JSON.parse(error.message)));
+                                    if (error.data)
+                                        dispatch(receiveCreateUser(error.data));
+                                }).catch(() => {
+                                    dispatch(errorCreateUser(errorMessages.GENERAL_ERROR));
+                                });
+                            return;
+                        } catch {
+                            dispatch(errorCreateUser(errorMessages.GENERAL_ERROR));
+                        }
+                        ;
+                }
+            });
     }
 }
 
@@ -535,28 +533,28 @@ export const RESET_CREATE_USERS = "RESET_CREATE_USERS";
 function requestCreateUsers() {
     return {
         type: REQUEST_CREATE_USERS,
-}
+    }
 }
 
 function receiveCreateUsers(users) {
     return {
         type: SUCCESS_CREATE_USERS,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         users: normalizeDatos(users)
-}
+    }
 }
 
 function errorCreateUsers(error) {
     return {
         type: ERROR_CREATE_USERS,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetCreateUsers() {
     return {
         type: RESET_CREATE_USERS,
-}
+    }
 }
 
 export function saveCreateUsers() {
@@ -567,7 +565,7 @@ export function saveCreateUsers() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let users = getState().users.create.nuevos.map((idUser) => {
@@ -597,18 +595,17 @@ export function saveCreateUsers() {
                         return;
                     default:
                         if (error.responseJSON && error.responseJSON.message !== "")
-                            try
-                                {
-                                    dispatch(errorCreateUsers(JSON.parse(error.responseJSON.message)));
-                                } catch(e) {
-                                    dispatch(errorCreateUsers(error.responseJSON.message));
-                                }
-                    else
+                            try {
+                                dispatch(errorCreateUsers(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorCreateUsers(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorCreateUsers(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorCreateUsers(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorCreateUsers(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -664,43 +661,42 @@ export function saveDeleteUser(user) {
         dispatch(requestDeleteUser());
         return usersApi.saveDelete(user)
             .then(function (response) {
-                            if (response.status >= 400) {
-                                return Promise.reject(response);
-                            } else {
-                                var data = response.json();
-                                //Refresco token
-                                //auth.addToken(response.headers);
-                                return data;
-                            }
-                        })
+                if (response.status >= 400) {
+                    return Promise.reject(response);
+                } else {
+                    var data = response.json();
+                    //Refresco token
+                    //auth.addToken(response.headers);
+                    return data;
+                }
+            })
             .then(function (data) {
-                            dispatch(resetDeleteUser());
-                            dispatch(receiveDeleteUser(data));
-                        })
+                dispatch(resetDeleteUser());
+                dispatch(receiveDeleteUser(data));
+            })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorDeleteUser(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorDeleteUser(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorDeleteUser(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorDeleteUser(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorDeleteUser(JSON.parse(error.message)));
-                                            }).catch(()=> {
-                                            dispatch(errorDeleteUser(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
+                        return;
+                    default:
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorDeleteUser(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorDeleteUser(error.responseJSON.message));
                             }
-                        });
+                        else
+                            error.json().then((error) => {
+                                dispatch(errorDeleteUser(JSON.parse(error.message)));
+                            }).catch(() => {
+                                dispatch(errorDeleteUser(errorMessages.GENERAL_ERROR));
+                            });
+                        return;
+                }
+            });
     }
 }
 

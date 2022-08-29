@@ -3,7 +3,7 @@ import rolesApi from "../api/rolesApi"
 //constants
 import * as errorMessages from '../constants/MessageConstants';
 //normalizers
-import {normalizeDatos, normalizeDato, denormalizeDato} from "../normalizers/normalizeRoles";
+import { normalizeDatos, normalizeDato, denormalizeDato } from "../normalizers/normalizeRoles";
 //lodash
 import merge from "lodash/merge";
 //utils
@@ -32,7 +32,7 @@ function requestRoles() {
 function receiveRoles(json) {
     return {
         type: RECEIVE_ROLES,
-    roles: normalizeDatos(json),
+        roles: normalizeDatos(json),
         receivedAt: Date.now()
     }
 }
@@ -122,7 +122,7 @@ function requestRole() {
 export function receiveRole(json) {
     return {
         type: RECEIVE_ROLE,
-    role: normalizeDato(json),
+        role: normalizeDato(json),
         receivedAt: Date.now()
     }
 }
@@ -270,7 +270,7 @@ export function saveUpdateRole() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let role = denormalizeDato(getState().roles.update.activo, store);
@@ -290,31 +290,30 @@ export function saveUpdateRole() {
                 dispatch(receiveUpdateRole(json));
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorUpdateRole(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorUpdateRole(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorUpdateRoles(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorUpdateRoles(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorUpdateRole(JSON.parse(error.message)));
-                                                if (error.data && error.data.length > 0)
-                                                   dispatch(receiveUpdateRole(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorUpdateRole(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
+                        return;
+                    default:
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorUpdateRoles(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorUpdateRoles(error.responseJSON.message));
                             }
-                        });
+                        else
+                            error.json().then((error) => {
+                                dispatch(errorUpdateRole(JSON.parse(error.message)));
+                                if (error.data && error.data.length > 0)
+                                    dispatch(receiveUpdateRole(error.data));
+                            }).catch(() => {
+                                dispatch(errorUpdateRole(errorMessages.GENERAL_ERROR));
+                            });
+                        return;
+                }
+            });
     }
 }
 
@@ -334,28 +333,28 @@ export const RESET_UPDATE_ROLES = "RESET_UPDATE_ROLES";
 function requestUpdateRoles() {
     return {
         type: REQUEST_UPDATE_ROLES,
-}
+    }
 }
 
 function receiveUpdateRoles(roles) {
     return {
         type: SUCCESS_UPDATE_ROLES,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         roles: normalizeDatos(roles)
-}
+    }
 }
 
 function errorUpdateRoles(error) {
     return {
         type: ERROR_UPDATE_ROLES,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetUpdateRoles() {
     return {
         type: RESET_UPDATE_ROLES,
-}
+    }
 }
 
 export function saveUpdateRoles() {
@@ -366,7 +365,7 @@ export function saveUpdateRoles() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let roles = getState().roles.update.activos.map((idRole) => {
@@ -394,19 +393,18 @@ export function saveUpdateRoles() {
                         dispatch(errorUpdateRoles(errorMessages.UNAUTHORIZED_TOKEN));
                         return;
                     default:
-                    if (error.responseJSON && error.responseJSON.message !== "")
-                        try
-                        {
-                            dispatch(errorUpdateRoles(JSON.parse(error.responseJSON.message)));
-                        } catch(e) {
-                            dispatch(errorUpdateRoles(error.responseJSON.message));
-                        }
-                    else
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorUpdateRoles(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorUpdateRoles(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorUpdateRoles(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorUpdateRoles(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorUpdateRoles(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -473,7 +471,7 @@ export function saveCreateRole() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let role = denormalizeDato(getState().roles.create.nuevo, store);
@@ -493,31 +491,30 @@ export function saveCreateRole() {
                 dispatch(receiveCreateRole(json));
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorCreateRole(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorCreateRole(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                    if (error.responseJSON && error.responseJSON.message !== "")
-                                        try
-                                        {
-                                            dispatch(errorCreateRoles(JSON.parse(error.responseJSON.message)));
-                                        } catch(e) {
-                                            dispatch(errorCreateRoles(error.responseJSON.message));
-                                        }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorCreateRole(JSON.parse(error.message)));
-                                                if (error.data)
-                                                    dispatch(receiveCreateRole(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorCreateRole(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
+                        return;
+                    default:
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorCreateRoles(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorCreateRoles(error.responseJSON.message));
                             }
-                        });
+                        else
+                            error.json().then((error) => {
+                                dispatch(errorCreateRole(JSON.parse(error.message)));
+                                if (error.data)
+                                    dispatch(receiveCreateRole(error.data));
+                            }).catch(() => {
+                                dispatch(errorCreateRole(errorMessages.GENERAL_ERROR));
+                            });
+                        return;
+                }
+            });
     }
 }
 
@@ -530,28 +527,28 @@ export const RESET_CREATE_ROLES = "RESET_CREATE_ROLES";
 function requestCreateRoles() {
     return {
         type: REQUEST_CREATE_ROLES,
-}
+    }
 }
 
 function receiveCreateRoles(roles) {
     return {
         type: SUCCESS_CREATE_ROLES,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         roles: normalizeDatos(roles)
-}
+    }
 }
 
 function errorCreateRoles(error) {
     return {
         type: ERROR_CREATE_ROLES,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetCreateRoles() {
     return {
         type: RESET_CREATE_ROLES,
-}
+    }
 }
 
 export function saveCreateRoles() {
@@ -562,7 +559,7 @@ export function saveCreateRoles() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let roles = getState().roles.create.nuevos.map((idRole) => {
@@ -592,18 +589,17 @@ export function saveCreateRoles() {
                         return;
                     default:
                         if (error.responseJSON && error.responseJSON.message !== "")
-                            try
-                                {
-                                    dispatch(errorCreateRoles(JSON.parse(error.responseJSON.message)));
-                                } catch(e) {
-                                    dispatch(errorCreateRoles(error.responseJSON.message));
-                                }
-                    else
+                            try {
+                                dispatch(errorCreateRoles(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorCreateRoles(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorCreateRoles(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorCreateRoles(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorCreateRoles(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -659,43 +655,42 @@ export function saveDeleteRole(role) {
         dispatch(requestDeleteRole());
         return rolesApi.saveDelete(role)
             .then(function (response) {
-                            if (response.status >= 400) {
-                                return Promise.reject(response);
-                            } else {
-                                var data = response.json();
-                                //Refresco token
-                                //auth.addToken(response.headers);
-                                return data;
-                            }
-                        })
+                if (response.status >= 400) {
+                    return Promise.reject(response);
+                } else {
+                    var data = response.json();
+                    //Refresco token
+                    //auth.addToken(response.headers);
+                    return data;
+                }
+            })
             .then(function (data) {
-                            dispatch(resetDeleteRole());
-                            dispatch(receiveDeleteRole(data));
-                        })
+                dispatch(resetDeleteRole());
+                dispatch(receiveDeleteRole(data));
+            })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorDeleteRole(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorDeleteRole(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorDeleteRole(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorDeleteRole(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorDeleteRole(JSON.parse(error.message)));
-                                            }).catch(()=> {
-                                            dispatch(errorDeleteRole(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
+                        return;
+                    default:
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorDeleteRole(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorDeleteRole(error.responseJSON.message));
                             }
-                        });
+                        else
+                            error.json().then((error) => {
+                                dispatch(errorDeleteRole(JSON.parse(error.message)));
+                            }).catch(() => {
+                                dispatch(errorDeleteRole(errorMessages.GENERAL_ERROR));
+                            });
+                        return;
+                }
+            });
     }
 }
 

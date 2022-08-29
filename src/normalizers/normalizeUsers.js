@@ -1,4 +1,4 @@
-import {normalize, schema, denormalize} from 'normalizr';
+import { normalize, schema, denormalize } from 'normalizr';
 import facePhoto from "./normalizeFacePhotos";
 
 const user = new schema.Entity('users', {face_photo: [facePhoto]}, {idAttribute: "id"});

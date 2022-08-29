@@ -45,7 +45,7 @@ import {
     DELETE_FACEPHOTO
 } from '../actions/FacePhotoActions';
 
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import merge from "lodash/merge";
 import mergeWith from "lodash/mergeWith";
@@ -430,7 +430,7 @@ function create(state = {
                 nuevo: {},
                 nuevos: []
             });
-            //CREATE FACEPHOTO
+        //CREATE FACEPHOTO
         case CREATE_FACEPHOTO:
             let userfacePhotoCreateActivo = clone(state.nuevo);
             Object.values(action.facePhoto).map((facePhotoCreate) => {

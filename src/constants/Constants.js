@@ -10,9 +10,9 @@ if (process.env.NODE_ENV === 'development' && !process.env.REACT_APP_ENVI) {
 }
 
 if (process.env.NODE_ENV === 'production') {
-    var BASE_URL = "https://opensafe.exadec.com/api";
-    var API_HOST = "https://opensafe.exadec.com";
-    var SOCKET_URL = "opensafe.exadec.com";
+    var BASE_URL = "";
+    var API_HOST = "";
+    var SOCKET_URL = "";
 }
 
 export default {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import clone from "lodash/clone";
 import isEmpty from "lodash/isEmpty"
 
@@ -88,7 +88,7 @@ export function useValidator(rulez) {
                                 error += "El campo es requerido.";
                             break;
                         case "required|notDisabled":
-                            if ((campo && (campo.value == "" || campo.value == null) &&  campo.disabled == false && (campo.getAttribute('aria-disabled') === null || campo.getAttribute('aria-disabled') == "false")))
+                            if ((campo && (campo.value == "" || campo.value == null) && campo.disabled == false && (campo.getAttribute('aria-disabled') === null || campo.getAttribute('aria-disabled') == "false")))
                                 error += "El campo es requerido.";
                             break;
                         case "sometimes|required":

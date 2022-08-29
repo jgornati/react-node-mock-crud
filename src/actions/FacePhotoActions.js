@@ -3,7 +3,7 @@ import facePhotosApi from "../api/facePhotosApi"
 //constants
 import * as errorMessages from '../constants/MessageConstants';
 //normalizers
-import {normalizeDatos, normalizeDato, denormalizeDato} from "../normalizers/normalizeFacePhotos";
+import { normalizeDatos, normalizeDato, denormalizeDato } from "../normalizers/normalizeFacePhotos";
 //lodash
 import merge from "lodash/merge";
 //utils
@@ -32,7 +32,7 @@ function requestFacePhotos() {
 function receiveFacePhotos(json) {
     return {
         type: RECEIVE_FACEPHOTOS,
-    facePhotos: normalizeDatos(json),
+        facePhotos: normalizeDatos(json),
         receivedAt: Date.now()
     }
 }
@@ -122,7 +122,7 @@ function requestFacePhoto() {
 export function receiveFacePhoto(json) {
     return {
         type: RECEIVE_FACEPHOTO,
-    facePhoto: normalizeDato(json),
+        facePhoto: normalizeDato(json),
         receivedAt: Date.now()
     }
 }
@@ -270,7 +270,7 @@ export function saveUpdateFacePhoto() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let facePhoto = denormalizeDato(getState().facePhotos.update.activo, store);
@@ -290,35 +290,35 @@ export function saveUpdateFacePhoto() {
                 dispatch(receiveUpdateFacePhoto(json));
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorUpdateFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorUpdateFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                try{
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorUpdateFacePhotos(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorUpdateFacePhotos(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorUpdateFacePhoto(JSON.parse(error.message)));
-                                                if (error.data && error.data.length > 0)
-                                                   dispatch(receiveUpdateFacePhoto(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorUpdateFacePhoto(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
-                                    } catch{
-                                            dispatch(errorUpdateFacePhoto(errorMessages.GENERAL_ERROR));
-                                        };
-                            }
-                        });
+                        return;
+                    default:
+                        try {
+                            if (error.responseJSON && error.responseJSON.message !== "")
+                                try {
+                                    dispatch(errorUpdateFacePhotos(JSON.parse(error.responseJSON.message)));
+                                } catch (e) {
+                                    dispatch(errorUpdateFacePhotos(error.responseJSON.message));
+                                }
+                            else
+                                error.json().then((error) => {
+                                    dispatch(errorUpdateFacePhoto(JSON.parse(error.message)));
+                                    if (error.data && error.data.length > 0)
+                                        dispatch(receiveUpdateFacePhoto(error.data));
+                                }).catch(() => {
+                                    dispatch(errorUpdateFacePhoto(errorMessages.GENERAL_ERROR));
+                                });
+                            return;
+                        } catch {
+                            dispatch(errorUpdateFacePhoto(errorMessages.GENERAL_ERROR));
+                        }
+                        ;
+                }
+            });
     }
 }
 
@@ -338,28 +338,28 @@ export const RESET_UPDATE_FACEPHOTOS = "RESET_UPDATE_FACEPHOTOS";
 function requestUpdateFacePhotos() {
     return {
         type: REQUEST_UPDATE_FACEPHOTOS,
-}
+    }
 }
 
 function receiveUpdateFacePhotos(facePhotos) {
     return {
         type: SUCCESS_UPDATE_FACEPHOTOS,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         facePhotos: normalizeDatos(facePhotos)
-}
+    }
 }
 
 function errorUpdateFacePhotos(error) {
     return {
         type: ERROR_UPDATE_FACEPHOTOS,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetUpdateFacePhotos() {
     return {
         type: RESET_UPDATE_FACEPHOTOS,
-}
+    }
 }
 
 export function saveUpdateFacePhotos() {
@@ -370,7 +370,7 @@ export function saveUpdateFacePhotos() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let facePhotos = getState().facePhotos.update.activos.map((idFacePhoto) => {
@@ -398,19 +398,18 @@ export function saveUpdateFacePhotos() {
                         dispatch(errorUpdateFacePhotos(errorMessages.UNAUTHORIZED_TOKEN));
                         return;
                     default:
-                    if (error.responseJSON && error.responseJSON.message !== "")
-                        try
-                        {
-                            dispatch(errorUpdateFacePhotos(JSON.parse(error.responseJSON.message)));
-                        } catch(e) {
-                            dispatch(errorUpdateFacePhotos(error.responseJSON.message));
-                        }
-                    else
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorUpdateFacePhotos(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorUpdateFacePhotos(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorUpdateFacePhotos(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorUpdateFacePhotos(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorUpdateFacePhotos(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -477,7 +476,7 @@ export function saveCreateFacePhoto() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let facePhoto = denormalizeDato(getState().facePhotos.create.nuevo, store);
@@ -497,35 +496,35 @@ export function saveCreateFacePhoto() {
                 dispatch(receiveCreateFacePhoto(json));
             })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorCreateFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorCreateFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                try{
-                                    if (error.responseJSON && error.responseJSON.message !== "")
-                                        try
-                                        {
-                                            dispatch(errorCreateFacePhotos(JSON.parse(error.responseJSON.message)));
-                                        } catch(e) {
-                                            dispatch(errorCreateFacePhotos(error.responseJSON.message));
-                                        }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorCreateFacePhoto(JSON.parse(error.message)));
-                                                if (error.data)
-                                                    dispatch(receiveCreateFacePhoto(error.data));
-                                            }).catch(() => {
-                                            dispatch(errorCreateFacePhoto(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
-                                    }catch {
-                                        dispatch(errorCreateFacePhoto(errorMessages.GENERAL_ERROR));
-                                    };
-                            }
-                        });
+                        return;
+                    default:
+                        try {
+                            if (error.responseJSON && error.responseJSON.message !== "")
+                                try {
+                                    dispatch(errorCreateFacePhotos(JSON.parse(error.responseJSON.message)));
+                                } catch (e) {
+                                    dispatch(errorCreateFacePhotos(error.responseJSON.message));
+                                }
+                            else
+                                error.json().then((error) => {
+                                    dispatch(errorCreateFacePhoto(JSON.parse(error.message)));
+                                    if (error.data)
+                                        dispatch(receiveCreateFacePhoto(error.data));
+                                }).catch(() => {
+                                    dispatch(errorCreateFacePhoto(errorMessages.GENERAL_ERROR));
+                                });
+                            return;
+                        } catch {
+                            dispatch(errorCreateFacePhoto(errorMessages.GENERAL_ERROR));
+                        }
+                        ;
+                }
+            });
     }
 }
 
@@ -538,28 +537,28 @@ export const RESET_CREATE_FACEPHOTOS = "RESET_CREATE_FACEPHOTOS";
 function requestCreateFacePhotos() {
     return {
         type: REQUEST_CREATE_FACEPHOTOS,
-}
+    }
 }
 
 function receiveCreateFacePhotos(facePhotos) {
     return {
         type: SUCCESS_CREATE_FACEPHOTOS,
-    receivedAt: Date.now(),
+        receivedAt: Date.now(),
         facePhotos: normalizeDatos(facePhotos)
-}
+    }
 }
 
 function errorCreateFacePhotos(error) {
     return {
         type: ERROR_CREATE_FACEPHOTOS,
-    error: error,
-}
+        error: error,
+    }
 }
 
 export function resetCreateFacePhotos() {
     return {
         type: RESET_CREATE_FACEPHOTOS,
-}
+    }
 }
 
 export function saveCreateFacePhotos() {
@@ -570,7 +569,7 @@ export function saveCreateFacePhotos() {
         Object.keys(getState()).forEach(
             (key) => {
                 if (getState()[key].byId)
-                    store[key] = merge({}, getState()[key].byId[key],getState()[key].update.activo,getState()[key].create.nuevo);
+                    store[key] = merge({}, getState()[key].byId[key], getState()[key].update.activo, getState()[key].create.nuevo);
             });
 
         let facePhotos = getState().facePhotos.create.nuevos.map((idFacePhoto) => {
@@ -600,18 +599,17 @@ export function saveCreateFacePhotos() {
                         return;
                     default:
                         if (error.responseJSON && error.responseJSON.message !== "")
-                            try
-                                {
-                                    dispatch(errorCreateFacePhotos(JSON.parse(error.responseJSON.message)));
-                                } catch(e) {
-                                    dispatch(errorCreateFacePhotos(error.responseJSON.message));
-                                }
-                    else
+                            try {
+                                dispatch(errorCreateFacePhotos(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorCreateFacePhotos(error.responseJSON.message));
+                            }
+                        else
                             error.json().then((error) => {
                                 dispatch(errorCreateFacePhotos(JSON.parse(error.message)));
                             }).catch(() => {
-                            dispatch(errorCreateFacePhotos(errorMessages.GENERAL_ERROR));
-                        });
+                                dispatch(errorCreateFacePhotos(errorMessages.GENERAL_ERROR));
+                            });
 
 
                         return;
@@ -667,43 +665,42 @@ export function saveDeleteFacePhoto(facePhoto) {
         dispatch(requestDeleteFacePhoto());
         return facePhotosApi.saveDelete(facePhoto)
             .then(function (response) {
-                            if (response.status >= 400) {
-                                return Promise.reject(response);
-                            } else {
-                                var data = response.json();
-                                //Refresco token
-                                //auth.addToken(response.headers);
-                                return data;
-                            }
-                        })
+                if (response.status >= 400) {
+                    return Promise.reject(response);
+                } else {
+                    var data = response.json();
+                    //Refresco token
+                    //auth.addToken(response.headers);
+                    return data;
+                }
+            })
             .then(function (data) {
-                            dispatch(resetDeleteFacePhoto());
-                            dispatch(receiveDeleteFacePhoto(data));
-                        })
+                dispatch(resetDeleteFacePhoto());
+                dispatch(receiveDeleteFacePhoto(data));
+            })
             .catch(function (error) {
-                            console.log(error, error.status);
-                            switch (error.status) {
-                                case 401:
-                                    dispatch(errorDeleteFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
+                console.log(error, error.status);
+                switch (error.status) {
+                    case 401:
+                        dispatch(errorDeleteFacePhoto(errorMessages.UNAUTHORIZED_TOKEN));
 
-                                    return;
-                                default:
-                                if (error.responseJSON && error.responseJSON.message !== "")
-                                    try
-                                    {
-                                        dispatch(errorDeleteFacePhoto(JSON.parse(error.responseJSON.message)));
-                                    } catch(e) {
-                                        dispatch(errorDeleteFacePhoto(error.responseJSON.message));
-                                    }
-                                    else
-                                            error.json().then((error) => {
-                                                dispatch(errorDeleteFacePhoto(JSON.parse(error.message)));
-                                            }).catch(()=> {
-                                            dispatch(errorDeleteFacePhoto(errorMessages.GENERAL_ERROR));
-                                        });
-                                    return;
+                        return;
+                    default:
+                        if (error.responseJSON && error.responseJSON.message !== "")
+                            try {
+                                dispatch(errorDeleteFacePhoto(JSON.parse(error.responseJSON.message)));
+                            } catch (e) {
+                                dispatch(errorDeleteFacePhoto(error.responseJSON.message));
                             }
-                        });
+                        else
+                            error.json().then((error) => {
+                                dispatch(errorDeleteFacePhoto(JSON.parse(error.message)));
+                            }).catch(() => {
+                                dispatch(errorDeleteFacePhoto(errorMessages.GENERAL_ERROR));
+                            });
+                        return;
+                }
+            });
     }
 }
 

@@ -1,4 +1,4 @@
-import {resetUsers, resetCreateUser, resetUpdateUser, resetDeleteUser} from "../actions/UserActions";
+import { resetUsers, resetCreateUser, resetUpdateUser, resetDeleteUser } from "../actions/UserActions";
 import {
     resetFacePhotos,
     resetCreateFacePhoto,

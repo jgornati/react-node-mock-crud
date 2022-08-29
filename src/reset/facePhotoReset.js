@@ -4,7 +4,7 @@ import {
     resetUpdateFacePhoto,
     resetDeleteFacePhoto
 } from "../actions/FacePhotoActions";
-import {resetUsers, resetCreateUser, resetUpdateUser, resetDeleteUser} from "../actions/UserActions";
+import { resetUsers, resetCreateUser, resetUpdateUser, resetDeleteUser } from "../actions/UserActions";
 
 var resetFacePhoto = {
     resetAll(dispatch) {

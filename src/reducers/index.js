@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import users from "./users";
 import roles from "./roles";
 import facePhotos from "./facePhotos";

@@ -49,7 +49,7 @@ import {
 
 } from '../actions/UserActions';
 
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import merge from "lodash/merge";
 import mergeWith from "lodash/mergeWith";

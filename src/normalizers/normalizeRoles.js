@@ -1,4 +1,4 @@
-import {normalize, schema, denormalize} from 'normalizr';
+import { normalize, schema, denormalize } from 'normalizr';
 
 const role = new schema.Entity('roles', {}, {idAttribute: "id"});
 

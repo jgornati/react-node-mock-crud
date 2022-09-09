@@ -1,17 +1,14 @@
 import c from '../constants/Constants';
-
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-
 const facePhotos = {
-
     getAll(filtros) {
-        var esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
 
         let defaultOptions = {
@@ -48,11 +45,11 @@ const facePhotos = {
         return fetch(c.BASE_URL + '/facePhotos/' + idFacePhoto, defaultOptions);
     },
     getFile(idFacePhoto, filtros) {
-        var esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
         let defaultOptions = {
             url: '',

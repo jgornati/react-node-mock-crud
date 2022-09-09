@@ -1,21 +1,15 @@
 import c from '../constants/Constants';
 import $ from 'jquery';
-
-// import data from '../../mock/users.json';
-
 require('es6-promise').polyfill();
-
 require('isomorphic-fetch');
 
-
-var users = {
-
+const users = {
     getAll(filtros) {
-        var esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
 
         let defaultOptions = {
@@ -33,16 +27,6 @@ var users = {
             defaultOptions.headers["Authorization"] = "Bearer " + localStorage.token;
         }
         return fetch(c.BASE_URL + '/users/?' + query, defaultOptions);
-
-        //Simular fetch
-        // return new Promise((resolve) => {
-        //         let rta = {};
-        //         rta.json = () => {
-        //             return data
-        //         }
-        //         resolve(rta)
-        //     }
-        // )
     },
     getOne(idUser) {
         let defaultOptions = {
@@ -60,29 +44,13 @@ var users = {
             defaultOptions.headers["Authorization"] = "Bearer " + localStorage.token;
         }
         return fetch(c.BASE_URL + '/users/' + idUser, defaultOptions);
-
-        //Simular fetch
-        // return new Promise((resolve) => {
-        //         let _user = null;
-        //         data.users.some((user) => {
-        //             console.log(user)
-        //             if (user.id === parseInt(idUser))
-        //                 _user = user;
-        //         })
-        //         let rta = {};
-        //         rta.json = () => {
-        //             return _user
-        //         }
-        //         resolve(rta)
-        //     }
-        // )
     },
     getFile(idUser, filtros) {
-        var esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
         let defaultOptions = {
             url: '',
@@ -102,7 +70,7 @@ var users = {
         return fetch(c.BASE_URL + '/users/' + idUser + '/file/?' + query, defaultOptions);
     },
     saveCreate(nuevo, files) {
-        var formData = new FormData();
+        let formData = new FormData();
         if (files) {
             files.forEach((file) => {
                 if (file)
@@ -125,7 +93,7 @@ var users = {
 
     },
     saveUpdate(activo, files) {
-        var formData = new FormData();
+        let formData = new FormData();
         if (files) {
             files.forEach((file) => {
                 if (file)

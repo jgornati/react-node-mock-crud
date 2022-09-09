@@ -1,18 +1,14 @@
 import c from '../constants/Constants';
-// import data from '../../mock/roles.json';
-
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-
 const roles = {
-
     getAll(filtros) {
-        const esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
 
         let defaultOptions = {
@@ -30,16 +26,6 @@ const roles = {
             defaultOptions.headers["Authorization"] = "Bearer " + localStorage.token;
         }
         return fetch(c.BASE_URL + '/roles/?' + query, defaultOptions);
-
-        // //Simular fetch
-        // return new Promise((resolve) => {
-        //         let rta = {};
-        //         rta.json = () => {
-        //             return data
-        //         }
-        //         resolve(rta)
-        //     }
-        // )
     },
     getOne(idRole) {
         let defaultOptions = {
@@ -57,28 +43,13 @@ const roles = {
             defaultOptions.headers["Authorization"] = "Bearer " + localStorage.token;
         }
         return fetch(c.BASE_URL + '/roles/' + idRole, defaultOptions);
-        //Simular fetch
-        // return new Promise((resolve) => {
-        //         let _role = null;
-        //         data.users.some((role) => {
-        //             console.log(role)
-        //             if (role.id === parseInt(idRole))
-        //                 _role = role;
-        //         })
-        //         let rta = {};
-        //         rta.json = () => {
-        //             return _role
-        //         }
-        //         resolve(rta)
-        //     }
-        // )
     },
     getFile(idRole, filtros) {
-        var esc = encodeURIComponent;
-        var query = "";
+        let encodeURI = encodeURIComponent;
+        let query = "";
         if (filtros)
             query = Object.keys(filtros)
-                .map(k => esc(k) + '=' + esc(filtros[k]))
+                .map(k => encodeURI(k) + '=' + encodeURI(filtros[k]))
                 .join('&');
         let defaultOptions = {
             url: '',

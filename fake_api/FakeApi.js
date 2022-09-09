@@ -55,7 +55,7 @@ app.post('/users', async function (req, res) {
     let newUser = JSON.parse(fields.user);
     UserService.create(newUser, files);
 
-    res.send(200, newUser);
+    res.status(200).send(newUser);
 })
 
 //Actualizar usuario

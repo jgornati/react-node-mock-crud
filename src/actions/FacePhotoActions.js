@@ -16,7 +16,6 @@ export const INVALIDATE_FACEPHOTOS = 'INVALIDATE_FACEPHOTOS';
 export const ERROR_FACEPHOTOS = "ERROR_FACEPHOTOS";
 export const RESET_FACEPHOTOS = "RESET_FACEPHOTOS";
 
-
 export function invalidateFacePhotos() {
     return {
         type: INVALIDATE_FACEPHOTOS
@@ -98,14 +97,12 @@ export function fetchFacePhotosIfNeeded(filtros) {
     }
 }
 
-
 //MODEL
 export const REQUEST_FACEPHOTO = 'REQUEST_FACEPHOTO';
 export const RECEIVE_FACEPHOTO = 'RECEIVE_FACEPHOTO';
 export const INVALIDATE_FACEPHOTO = 'INVALIDATE_FACEPHOTO';
 export const ERROR_FACEPHOTO = "ERROR_FACEPHOTO";
 export const RESET_FACEPHOTO = "RESET_FACEPHOTO";
-
 
 export function invalidateFacePhoto() {
     return {
@@ -218,7 +215,6 @@ export function fetchFileFacePhoto(idFacePhoto, filtros) {
             });
     }
 }
-
 
 //UPDATE MODEL
 export const UPDATE_FACEPHOTO = 'UPDATE_FACEPHOTO';
